@@ -22,15 +22,23 @@
         <div class="three"> <form action="/prime" method="POST"> <button type="submit"> <img id="prime" src="prime.svg" alt="prime logo" class="color2"/> </button> </form> </div>
 
     </div>
-    <div class="content">
         <% if (locals.content) { %>
+            <div class="filtermenu" style="display: flex; width: 100%;">
+                <div class="a"><form action="/thriller" method="POST"><button type="submit" class="btn btn-outline-warning">Thriller</button></form></div>
+                <div class="b"><form action="/comedy" method="POST"><button type="submit" class="btn btn-outline-info">Comedy</button></form></div>
+                <div class="c"><form action="/action" method="POST"><button type="action" class="btn btn-outline-danger">Action</button></form></div>
+                <div class="d"><form action="/romance" method="POST"><button type="submit" class="btn btn-outline-success">Romance</button></form></div>
+            </div>
+        <div class="content">
         <%  for (let i = 0; i < content.length; i++) { %>
         <div class="card" style="width: 18rem; background-color: transparent; color: white; border: 2px white inset;">
-            <img style="margin-left: -0.5%; height: 200px;" src="<%= url[i] %>" class="card-img-top" alt="...">
+            <img style="margin-left: -0.3%; height: 200px;" src="<%= url[i] %>" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title"><%= content[i].details.title %></h5>
+                <h5 class="card-title"><b><%= content[i].details.title %></b></h5>
                 <p class="card-text"><%= content[i].details.synopsis %></p>
-                <a href="#" class="btn btn-outline-danger">Check it out</a>
+                <form action="/<%= content[i].details.id %>" method="POST">
+                    <button type="submit" class="btn btn-outline-danger">Check it out</button>
+                </form>
             </div>
         </div>
         <% } %>

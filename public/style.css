@@ -57,6 +57,18 @@ header {
     margin-top: 5%;
 }
 
+.a button, .b button, .c button, .d button {
+    height: 60px;
+    width: 230px;
+    font-size: 27px;
+}
+
+.filtermenu {
+    align-items: center;
+    justify-content: center;
+    margin-left: -0.5%;
+}
+
 button {
     background-color: transparent;
     border: 0px;
