@@ -37,6 +37,7 @@
                 <h5 class="card-title"><b><%= content[i].details.title %></b></h5>
                 <p class="card-text"><%= content[i].details.synopsis %></p>
                 <form action="/<%= content[i].details.id %>" method="POST">
+                    <input type="hidden" name="titleName" value="<%= content[i].details.title %>">
                     <button type="submit" class="btn btn-outline-danger">Check it out</button>
                 </form>
             </div>

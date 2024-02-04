@@ -7,52 +7,83 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" />
+    <style>
+        .heading {
+            font-family: 'Dosis', sans-serif;
+            font-size: 47px;
+            color: orangered;
+        }
+        h2 {
+            font-size: 28px;
+        }
+    </style>
 
 </head>
 <body>
-    <div class="detailflex" style="display: flex; flex-direction: column;">
-        <h1> <%= detail.details.title %> </h1>
-        <h1> Genres: </h1>
+    <div class="detailflex" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 3px outset rgb(255, 85, 0);">
+        <h1 class="heading" style="font-size: 58px; margin-bottom: 4%;"> <em> <%= detail.details.title %> </em> </h1>
+        <h1 class="heading"> Genres: </h1>
         <ul>
         <% for(let i = 0; i < detail.details.genres.length; i++) { %>
             <li> <h2> <%= detail.details.genres[i].name %> </h2> </li>
         <% } %>
         </ul>
-        <h1> Year of Release: <%= detail.details.releaseYear %> </h1>
-        <h1> Synopsis: </h1>
+        <h1 class="heading"> Year of Release: <%= detail.details.releaseYear %> </h1>
+        <% if (locals.link) { %>
+            <img src="<%= link %>"style="height: 400px; width: 450px; border: 2px solid red; border-radius: 50%; margin: 10px;"/>
+        <% } %>
+        <h1 class="heading"> Synopsis: </h1>
         <h2> <%= detail.details.synopsis %> </h2>
-        <h1> Cast: </h1>
-        <ul>
+        <h1 class="heading"> Cast: </h1>
             <% for(let i = 0; i < detail.details.cast.length; i++) { %>
-                <li> <h2> <%= detail.details.cast[i].name %> </h2> </li>
+                 <h2> <%= detail.details.cast[i].name %>  </h2> 
             <% } %>
-        </ul>
-        <h1> Directors: </h1>
-        <ul>
+        <h1 class="heading"> Directors: </h1>
             <% for(let i = 0; i < detail.details.directors.length; i++) { %>
-                <li> <h2> <%= detail.details.directors[i].name %> </h2> </li>
+                 <h2> <%= detail.details.directors[i].name %>  </h2> 
             <% } %>
-        </ul>
-        <h1> Writers: </h1>
-        <ul>
+
+        <h1 class="heading"> Writers: </h1>
                 <% for(let i = 0; i < detail.details.writers.length; i++) { %>
-                    <li> <h2> <%= detail.details.writers[i].name %> </h2> </li>
+                    <h2> <%= detail.details.writers[i].name %>  </h2> 
                 <% } %>
-        </ul>
-        <h1> Family Friendly Content or Not? </h1>
+        <h1 class="heading"> Family Friendly Content or Not? </h1>
         <ul>
-            <li> Rating: <h2> <%= detail.details.maturity.rating.value %> </h2></li>
-            <li> Trigger warnings: <h2> <%= detail.details.maturity.rating.maturityDescription %> </h2></li>
+            <li> <h2> Rating:  <%= detail.details.maturity.rating.value %> </h2></li>
+            <li> <h2> Trigger warnings: <h2> <%= detail.details.maturity.rating.maturityDescription %> </h2></li>
         </ul>
-        <h1> Facts about this <%= detail.details.type %> : </h1>
+        <h1 class="heading"> Top Reviews & Ratings </h1>
+        <% if (locals.rev) { %>
+            <div class="review" style="display: flex; gap: 10px;">
+                <% for (let i = 0; i < rev.length; i++) { %>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title"><%= rev[i].author %></h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary"> Stars: <%= rev[i].rating %></h6>
+                        <p class="card-text"><%= rev[i].content %></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+        <% if (locals.detail.details.type) { %>
+        <h1 class="heading"> Facts about this <%= detail.details.type %> : </h1>
         <ul>
             <li> <h2> <%= detail.details.supplementalMessage %> </h2> </li>
         </ul>
+        <% } %>
         <% var cc = detail.details.delivery.hasTextClosedCaptions ? "Available" : "Not Available"; %>
-        <h1> Subtitles: <%= cc %> </h1>
-        <h1> Quality: <%= detail.details.delivery.quality %> </h1>
+        <h1 class="heading"> Subtitles: <%= cc %> </h1>
+        <h1 class="heading"> Quality: <%= detail.details.delivery.quality %> </h1>
+        <h1 class="heading"> Video: </h1>
+        <% if (locals.video) { %>
+            <iframe width="800" height="450" src="<%= video %>" frameborder="0" allowfullscreen></iframe>
+        <% } %>
+        <% var str = "https://www.netflix.com/co-en/title/" + id %>
+        <a href="<%= str %>"><button type="button" class="btn btn-outline-danger"> <h2> Watch Now </h2> </button></a>
     </div>
 </body>
 </html>
