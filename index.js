@@ -17,7 +17,7 @@ const options = {
   method: 'GET',
   url: 'https://netflix54.p.rapidapi.com/title/details/',
   params: {
-    ids: '80057281, 80057280, 80057250, 80057240, 80057244, 80057284, 70114497, 70241118, 81011211, 80130521, 60022589, 70060008',
+    ids: '80057281, 80057280, 80057250, 80057240, 80057244, 80057284, 70114497, 70241118, 81011211, 80130521, 60022589, 70060008, 80117470, 70196147, 70308555, 80237957',
   },
   headers: {
     // 'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
@@ -29,17 +29,35 @@ const options = {
 const imgAPIKey = "vslAvNR8V2hOMX2Yvew79TYWX1q6rzAtS0D41uugRIgZTHEg1Bnm8XBd";
 app.post("/netflix", async (req, res) => {
     try {
+        
         const response = await axios.request(options);
         var url = [];
         const perPage = 1;
         for (let i = 0; i < response.data.length; i++ ) {
             const query = response.data[i].details.title;
-
-            var v = await axios.get(`https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}`, 
-            { headers: {
-                'Authorization': imgAPIKey,
-            } } );
-            url.push(v.data.photos[0].src.original);
+            var  updOptions = {
+                method: 'POST',
+                url: 'https://google-api31.p.rapidapi.com/imagesearch',
+                headers: {
+                  'content-type': 'application/json',
+                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                },
+                data: {
+                  text: query,
+                  safesearch: 'on',
+                  region: 'wt-wt',
+                  color: '',
+                  size: '',
+                  type_image: '',
+                  layout: '',
+                  max_results: 1
+                }
+              };
+              const newres = await axios.request(updOptions);
+              console.log(newres.data);
+              const imgn = newres.data.result[0].image;
+            url.push(imgn);
         }
         console.log(url);
         res.render("index.ejs", { content: response.data, url: url });
@@ -78,12 +96,28 @@ app.post("/thriller", async (req, res) => {
         }
         for (let i = 0; i < needed.length; i++ ) {
             const query = needed[i].details.title;
-
-            var v = await axios.get(`https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}`, 
-            { headers: {
-                'Authorization': imgAPIKey,
-            } } );
-            url.push(v.data.photos[0].src.original);
+            var  updOptions = {
+                method: 'POST',
+                url: 'https://google-api31.p.rapidapi.com/imagesearch',
+                headers: {
+                  'content-type': 'application/json',
+                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                },
+                data: {
+                  text: query,
+                  safesearch: 'on',
+                  region: 'wt-wt',
+                  color: '',
+                  size: '',
+                  type_image: '',
+                  layout: '',
+                  max_results: 1
+                }
+              };
+              const newres = await axios.request(updOptions);
+              const imgn = newres.data.result[0].image;
+            url.push(imgn);
         }
         console.log(url);
         
@@ -108,12 +142,28 @@ app.post("/comedy", async (req, res) => {
         }
         for (let i = 0; i < needed.length; i++ ) {
             const query = needed[i].details.title;
-
-            var v = await axios.get(`https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}`, 
-            { headers: {
-                'Authorization': imgAPIKey,
-            } } );
-            url.push(v.data.photos[0].src.original);
+            var  updOptions = {
+                method: 'POST',
+                url: 'https://google-api31.p.rapidapi.com/imagesearch',
+                headers: {
+                  'content-type': 'application/json',
+                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                },
+                data: {
+                  text: query,
+                  safesearch: 'on',
+                  region: 'wt-wt',
+                  color: '',
+                  size: '',
+                  type_image: '',
+                  layout: '',
+                  max_results: 1
+                }
+              };
+              const newres = await axios.request(updOptions);
+              const imgn = newres.data.result[0].image;
+            url.push(imgn);
         }
         console.log(url);
         
@@ -138,12 +188,28 @@ app.post("/romance", async (req, res) => {
         }
         for (let i = 0; i < needed.length; i++ ) {
             const query = needed[i].details.title;
-
-            var v = await axios.get(`https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}`, 
-            { headers: {
-                'Authorization': imgAPIKey,
-            } } );
-            url.push(v.data.photos[0].src.original);
+            var  updOptions = {
+                method: 'POST',
+                url: 'https://google-api31.p.rapidapi.com/imagesearch',
+                headers: {
+                  'content-type': 'application/json',
+                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                },
+                data: {
+                  text: query,
+                  safesearch: 'on',
+                  region: 'wt-wt',
+                  color: '',
+                  size: '',
+                  type_image: '',
+                  layout: '',
+                  max_results: 1
+                }
+              };
+              const newres = await axios.request(updOptions);
+              const imgn = newres.data.result[0].image;
+            url.push(imgn);
         }
         console.log(url);
         
@@ -168,12 +234,28 @@ app.post("/action", async (req, res) => {
         }
         for (let i = 0; i < needed.length; i++ ) {
             const query = needed[i].details.title;
-
-            var v = await axios.get(`https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}`, 
-            { headers: {
-                'Authorization': imgAPIKey,
-            } } );
-            url.push(v.data.photos[0].src.original);
+            var  updOptions = {
+                method: 'POST',
+                url: 'https://google-api31.p.rapidapi.com/imagesearch',
+                headers: {
+                  'content-type': 'application/json',
+                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                },
+                data: {
+                  text: query,
+                  safesearch: 'on',
+                  region: 'wt-wt',
+                  color: '',
+                  size: '',
+                  type_image: '',
+                  layout: '',
+                  max_results: 1
+                }
+              };
+              const newres = await axios.request(updOptions);
+              const imgn = newres.data.result[0].image;
+            url.push(imgn);
         }
         console.log(url);
         
@@ -201,19 +283,22 @@ app.post("/:id", async (req, res) => {
         const titleID = parseInt(req.params.id);
         const options_1 = {
             method: 'GET',
-            url: 'https://mdblist.p.rapidapi.com/',
-            params: {s: req.body.titleName},
+            url: 'https://imdb146.p.rapidapi.com/v1/find/',
+            params: {
+              query: req.body.titleName,
+            },
             headers: {
               'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
-              'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
+              'X-RapidAPI-Host': 'imdb146.p.rapidapi.com'
             }
         };
+
         const  imgOptions = {
             method: 'POST',
             url: 'https://google-api31.p.rapidapi.com/imagesearch',
             headers: {
               'content-type': 'application/json',
-              'X-RapidAPI-Key': 'a1a06f4e38msh9278b7ef0e4760dp136a39jsnd96dc0b8b758',
+              'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
               'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
             },
             data: {
@@ -232,7 +317,7 @@ app.post("/:id", async (req, res) => {
             url: 'https://google-api31.p.rapidapi.com/videosearch',
             headers: {
               'content-type': 'application/json',
-              'X-RapidAPI-Key': 'a1a06f4e38msh9278b7ef0e4760dp136a39jsnd96dc0b8b758',
+              'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
               'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
             },
             data: {
@@ -255,20 +340,31 @@ app.post("/:id", async (req, res) => {
         const query = response.data;
         console.log(query);
         var det1 = await axios.request(options_1);
-        det1 = det1.data.imdbid;
+        det1 = det1.data.titleResults.results[0].id;
         console.log(det1);
         const options_2 = {
             method: 'GET',
-            url: 'https://mdblist.p.rapidapi.com/',
-            params: {i: det1},
+            url: 'https://imdb8.p.rapidapi.com/title/get-user-reviews',
+            params: {
+                tconst: det1
+            },
             headers: {
                 'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
-                'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
+                'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
             }
         }
         const reviews = await axios.request(options_2);
         var revArr = reviews.data.reviews;
-        res.render("details.ejs", { detail: query[0], link: img, video: vid , id: titleID, rev: revArr});
+        var list = [];
+        for (let i = 0; i < 3; i++) {
+            list.push({
+                author: revArr[i].author.displayName,
+                rating: revArr[i].authorRating,
+                title: revArr[i].reviewTitle,
+                content: revArr[i].reviewText,
+            })
+        }
+        res.render("details.ejs", { detail: query[0], link: img, video: vid , id: titleID, rev: list});
     } catch (error) {
         console.error(error);
     }
