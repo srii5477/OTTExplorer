@@ -13,20 +13,7 @@ app.get("/", (req, res) => {
     res.render("index.ejs");
 })
 
-const options = {
-  method: 'GET',
-  url: 'https://netflix54.p.rapidapi.com/title/details/',
-  params: {
-    ids: '80057281, 80057280, 80057250, 80057240, 80057244, 80057284, 70114497, 70241118, 81011211, 80130521, 60022589, 70060008, 80117470, 70196147, 70308555, 80237957',
-  },
-  headers: {
-    // 'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
-    'X-RapidAPI-Key': 'a1a06f4e38msh9278b7ef0e4760dp136a39jsnd96dc0b8b758',
-    'X-RapidAPI-Host': 'netflix54.p.rapidapi.com'
-  }
-};
 
-const imgAPIKey = "vslAvNR8V2hOMX2Yvew79TYWX1q6rzAtS0D41uugRIgZTHEg1Bnm8XBd";
 app.post("/netflix", async (req, res) => {
     try {
         
@@ -39,9 +26,7 @@ app.post("/netflix", async (req, res) => {
                 method: 'POST',
                 url: 'https://google-api31.p.rapidapi.com/imagesearch',
                 headers: {
-                  'content-type': 'application/json',
-                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
-                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                  
                 },
                 data: {
                   text: query,
@@ -66,21 +51,7 @@ app.post("/netflix", async (req, res) => {
     }
 })
 app.use(express.static("public"));
-/* const options = {
-  method: 'GET',
-  url: 'https://netflix54.p.rapidapi.com/search/',
-  params: {
-    query: 'drama',
-    offset: '0',
-    limit_titles: '50',
-    limit_suggestions: '20',
-    lang: 'en'
-  },
-  headers: {
-    'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
-    'X-RapidAPI-Host': 'netflix54.p.rapidapi.com'
-  }
-}; */
+
 app.post("/thriller", async (req, res) => {
     try {
         const response = await axios.request(options);
@@ -100,9 +71,7 @@ app.post("/thriller", async (req, res) => {
                 method: 'POST',
                 url: 'https://google-api31.p.rapidapi.com/imagesearch',
                 headers: {
-                  'content-type': 'application/json',
-                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
-                  'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+                  
                 },
                 data: {
                   text: query,
@@ -147,7 +116,7 @@ app.post("/comedy", async (req, res) => {
                 url: 'https://google-api31.p.rapidapi.com/imagesearch',
                 headers: {
                   'content-type': 'application/json',
-                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+
                   'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
                 },
                 data: {
@@ -193,7 +162,7 @@ app.post("/romance", async (req, res) => {
                 url: 'https://google-api31.p.rapidapi.com/imagesearch',
                 headers: {
                   'content-type': 'application/json',
-                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+      
                   'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
                 },
                 data: {
@@ -239,7 +208,7 @@ app.post("/action", async (req, res) => {
                 url: 'https://google-api31.p.rapidapi.com/imagesearch',
                 headers: {
                   'content-type': 'application/json',
-                  'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+      
                   'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
                 },
                 data: {
@@ -273,7 +242,7 @@ const newOptions = {
           ids: '',
         },
         headers: {
-          'X-RapidAPI-Key': 'a1a06f4e38msh9278b7ef0e4760dp136a39jsnd96dc0b8b758',
+ 
           'X-RapidAPI-Host': 'netflix54.p.rapidapi.com'
         }
 }
@@ -288,7 +257,7 @@ app.post("/:id", async (req, res) => {
               query: req.body.titleName,
             },
             headers: {
-              'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+             
               'X-RapidAPI-Host': 'imdb146.p.rapidapi.com'
             }
         };
@@ -298,7 +267,7 @@ app.post("/:id", async (req, res) => {
             url: 'https://google-api31.p.rapidapi.com/imagesearch',
             headers: {
               'content-type': 'application/json',
-              'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+          
               'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
             },
             data: {
@@ -317,7 +286,7 @@ app.post("/:id", async (req, res) => {
             url: 'https://google-api31.p.rapidapi.com/videosearch',
             headers: {
               'content-type': 'application/json',
-              'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+           
               'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
             },
             data: {
@@ -349,7 +318,7 @@ app.post("/:id", async (req, res) => {
                 tconst: det1
             },
             headers: {
-                'X-RapidAPI-Key': '3199b27143msh3eb08fcc04a7799p1aabbfjsn60f5f055ff69',
+         
                 'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
             }
         }
